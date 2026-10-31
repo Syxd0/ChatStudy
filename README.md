@@ -75,6 +75,38 @@ Client-server chat applications are foundational to real-time communication over
 
 
 ## Result:
+Developed By: Anitha P
+Register Number: 212225040022
+**server.py**
+```
+import socket 
+from datetime import datetime 
+s=socket.socket() 
+s.bind(('localhost',5000)) 
+s.listen(5) 
+print("server waiting for connection...")
+c,addr=s.accept() 
+print("Client Address : ",addr) 
+now = datetime.now() 
+c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode()) 
+ack=c.recv(1024).decode() 
+if ack: 
+    print(ack) 
+c.close()
+s.close()
+```
+**client.py**
+```
+import socket
+s=socket.socket() 
+s.connect(('localhost',5000)) 
+print(s.getsockname()) 
+print(s.recv(1024).decode()) 
+s.send("acknowledgement recived from the server".encode())
+s.close()
+```
+<img width="1747" height="388" alt="image" src="https://github.com/user-attachments/assets/21a885e6-4c3f-4c7d-9e43-abc7f21ce3a0" />
+
 
 Thus the study on Client Server Chat Applications has been performed
 
